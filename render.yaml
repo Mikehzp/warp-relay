@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: warp-relay
+    runtime: python
+    plan: free
+    region: oregon          # 美国西部，出口就是美国 IP
+    buildCommand: pip install -r requirements.txt
+    startCommand: python relay.py
+    healthCheckPath: /
+    envVars:
+      - key: TUNNEL_TOKEN
+        sync: false         # 部署时在面板里填，不进仓库
